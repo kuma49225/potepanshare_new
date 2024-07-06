@@ -1,0 +1,96 @@
+.FirstView {
+  background-image: url('https://rails-02-sample.herokuapp.com/assets/home/cover-lg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  width:100%;
+
+  .FirstView__title {
+    font-size: 5.5rem; // サイズをアップ
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .FirstViewSearch {
+    background: hsla(0, 0%, 100%, .4);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px; // 最大幅を設定
+    margin: 0 auto; // 中央に配置
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .form-control, .btn {
+      width: 100%; // フォームとボタンの幅を背景幅と一致させる
+      max-width: 500px;
+      margin: 0.5rem 0; // 隙間を追加
+    }
+
+    .FirstViewSearch__input {
+      background: hsla(0, 0%, 100%, 1); // 背景を白に変更
+      color: black;
+    }
+
+    .FirstViewSearch__button {
+      background-color: #ff6f61;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.RecommendAreaSection {
+  padding: 2rem 0 !important;
+  text-align: left !important; /* 左寄せに変更 */
+  margin-left: 1.5rem !important; /* 画像との間に間隔を設定 */
+
+  h2 {
+    margin-bottom: 5rem !important; /* タイトルと画像の間にスペースを追加 */
+    border-bottom: 2px solid #ff6f61 !important;
+    display: inline-block !important;
+  }
+
+  .RecommendAreas {
+    display: flex !important;
+    justify-content: space-between !important; /* 均等に配置 */
+    flex-wrap: wrap !important;
+    gap: 4rem !important; /* 画像間のスペースを追加 */
+    margin-bottom: 10rem !important; /* 画像とフッターの間にスペースを追加 */
+  }
+
+  .RecommendArea {
+    flex: 1 !important; /* 画像を均等に配置 */
+    margin: 1rem !important;
+    max-width: 25% !important; /* 最大幅を設定 */
+    text-align: center !important;
+
+    img {
+      width: 120% !important;
+      height: 400px !important; /* 高さを大きくする */
+      object-fit: cover !important; /* 画像の比率を保つ */
+      border-radius: 5px !important;
+    }
+
+    .RecommendArea__name {
+      margin-top: 0.5rem !important;
+      font-size: 1rem !important;
+    }
+  }
+}

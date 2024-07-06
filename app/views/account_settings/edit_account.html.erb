@@ -1,0 +1,28 @@
+<main class="account-settings-main">
+  <%= render 'account_settings/settings_navigation' %>
+  <div class="account-edit">
+    <h3>アカウント</h3>
+    <%= form_with model: @user, url: update_account_account_settings_path do |f| %>
+      <div class="field">
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :password, '変更後パスワード' %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, '確認用パスワード' %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div class="field">
+        <%= f.label :current_password, '現在のパスワード' %>
+        <%= f.password_field :current_password %>
+      </div>
+      <div class="actions">
+        <%= f.submit '保存', class: 'btn btn-primary' %>
+        <%= link_to 'キャンセル', show_account_account_settings_path, class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</main>

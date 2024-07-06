@@ -1,0 +1,552 @@
+@import "~bootstrap/scss/bootstrap";
+@import "home"; 
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #202040;
+  padding: 1em;
+  color: white;
+
+  .nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+
+      img {
+        height: 40px;
+      }
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      justify-content: flex-end;
+
+      li {
+        margin-left: 1em;
+        position: relative;
+
+        a {
+          color: white;
+          text-decoration: none;
+
+          &.register-button {
+            background-color: #ff6f61;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+          }
+          .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 5px;
+          }
+        }
+
+        .account-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: #fff;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          border-radius: 4px;
+          z-index: 1000;
+          min-width: 200px;
+          li {
+            display: block;
+            padding: 10px 20px;
+
+            a {
+              color: #333;
+              text-decoration: none;
+
+              &:hover {
+                background-color: #f5f5f5;
+              }
+            }
+            &.separator {
+              padding: 0;
+              margin: 0;
+              border-bottom: 3px solid #ddd;
+              height: 0;
+            }
+          }
+        }
+
+        &.show .account-menu {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.account-menu-toggle {
+  cursor: pointer;
+}
+
+.account-menu-item {
+  position: relative;
+}
+
+.account-menu {
+  display: none;
+}
+
+.account-menu.show {
+  display: block;
+}
+
+.account-menu li {
+  padding: 10px 20px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+footer {
+  background-color: #202040;
+  color: white;
+  text-align: left;
+  padding: 2em 2em 2em 300px;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    .footer-logo {
+      padding-top: 300px;
+      margin-bottom: 1em;
+
+      img {
+        height: 40px;
+      }
+    }
+
+    p {
+      margin: 0;
+      padding-bottom: 100px;
+    }
+  }
+}
+
+.account-settings {
+  display: flex;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.settings-navigation {
+  flex: 0 0 200px;
+  padding-right: 20px;
+  list-style: none;
+}
+
+.settings-navigation ul {
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.settings-navigation ul li {
+  border-bottom: 1px solid #ddd;
+}
+
+.settings-navigation ul li:last-child {
+  border-bottom: none;
+}
+
+.settings-navigation ul li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.settings-navigation ul li a:hover {
+  background-color: #f5f5f5;
+}
+
+.settings-navigation ul li.active a {
+  color: red !important;
+  font-weight: bold;
+}
+
+.settings-content {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.profile-show, .profile-edit, .account-show, .account-edit {
+  padding: 20px;
+  width:100%;
+  position: relative;
+}
+
+.profile-show h3, .profile-edit h3, .account-show h3, .account-edit h3 {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.profile-show h3::after, .profile-edit h3::after, .account-show h3::after, .account-edit h3::after {
+  content: '';
+  display: block;
+  width: calc(600%);
+  height: 2px;
+  background: #ddd;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.profile-show .edit-link, .profile-edit .edit-link, .account-show .edit-link, .account-edit .edit-link {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-weight: normal;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.profile-image {
+  display: block;
+  margin-top: 10px;
+  max-width: 150px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.details-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  .edit-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  p {
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+
+    strong {
+      min-width: 100px;
+    }
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 20px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.profile-details p {
+  display: flex;
+  align-items: center;
+
+  strong {
+    min-width: 100px;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.field {
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"], input[type="email"], input[type="password"], textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .file_field {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  .btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+
+    &.btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    &.btn-secondary {
+      background-color: #6c757d;
+      border: none;
+    }
+  }
+}
+
+.account-settings-main {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.profile-show p, .account-show p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-show p strong, .account-show p strong {
+  min-width: 150px;
+  margin-right: 10px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  width:70%;
+}
+
+.form-group label {
+  flex: 0 0 150px;
+  margin-right: 20px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group .file_field {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 50%;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 20px;
+  width:70%;
+}
+
+.form-actions .btn {
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.form-actions .btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.form-actions .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.profile-image {
+  margin-right: 20px;
+}
+
+.search-bar {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  .container {
+    display: flex;
+    justify-content: center;
+    .form-group {
+      margin-right: 10px;
+      input.form-control {
+        width: 250px;
+      }
+    }
+    .btn-primary {
+      height: 38px;
+    }
+  }
+}
+
+.search-results {
+  .container {
+    margin-top: 20px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .card-deck {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .card {
+        flex: 0 0 calc(33.333% - 10px);
+        margin-bottom: 20px;
+
+        .card-img-top {
+          width: 100%;
+          height: auto;
+        }
+
+        .card-body {
+          h5.card-title {
+            font-size: 1.25em;
+            margin-bottom: 10px;
+          }
+
+          p.card-text {
+            margin-bottom: 10px;
+
+            small.text-muted {
+              display: block;
+              margin-bottom: 5px;
+            }
+
+            strong {
+              display: block;
+              margin-top: 10px;
+            }
+          }
+
+          .btn {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-form {
+  margin-bottom: 20px;
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.hotels-index {
+  .card-deck {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+      margin: 10px;
+      flex: 1 1 30%;
+      max-width: 30%;
+    }
+  }
+}
+
+.hotel-show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__image {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  &__details {
+    flex: 2;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+}
+
+.dropdown-menu.show {
+  display: block;
+}

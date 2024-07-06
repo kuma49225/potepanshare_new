@@ -1,0 +1,11 @@
+<div class="settings-navigation">
+  <h2>設定</h2>
+  <ul>
+    <li class="<%= 'active' if current_page?(edit_account_account_settings_path) || current_page?(show_account_account_settings_path) %>">
+      <%= link_to 'アカウント', show_account_account_settings_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(edit_profile_account_settings_path) || current_page?(show_profile_account_settings_path) %>">
+      <%= link_to 'プロフィール', show_profile_account_settings_path %>
+    </li>
+  </ul>
+</div>

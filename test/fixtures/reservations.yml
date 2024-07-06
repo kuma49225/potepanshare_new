@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_in: 2024-06-28
+  check_out: 2024-06-28
+  number_of_people: 1
+  user: one
+  hotel: one
+
+two:
+  check_in: 2024-06-28
+  check_out: 2024-06-28
+  number_of_people: 1
+  user: two
+  hotel: two
