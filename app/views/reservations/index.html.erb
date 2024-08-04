@@ -1,0 +1,40 @@
+<h1>予約済み一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>合計料金</th>
+      <th>チェックイン</th>
+      <th>チェックアウト</th>
+      <th>予約確定日時</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= image_tag reservation.hotel.image.present? ? reservation.hotel.image.url : 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png', size: '100x100' %></td>
+        <td><%= link_to reservation.hotel.name, hotel_path(reservation.hotel) %></td>
+        <td><%= reservation.hotel.description %></td>
+        <td>¥<%= number_to_currency(reservation.hotel.price * (reservation.check_out - reservation.check_in).to_i, unit: "", precision: 0) %></td>
+        <td><%= reservation.check_in.strftime('%Y/%m/%d') %></td>
+        <td><%= reservation.check_out.strftime('%Y/%m/%d') %></td>
+        <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ⋮
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <%= link_to '再予約', edit_hotel_reservation_path(reservation.hotel, reservation), class: 'dropdown-item' %>
+              <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteModal" data-hotel-name="<%= reservation.hotel.name %>" data-check-in="<%= reservation.check_in %>" data-check-out="<%= reservation.check_out %>" data-number-of-people="<%= reservation.number_of_people %>" data-delete-url="<%= hotel_reservation_path(reservation.hotel, reservation) %>">予約を削除</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

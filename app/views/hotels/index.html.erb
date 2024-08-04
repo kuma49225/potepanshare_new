@@ -1,0 +1,26 @@
+<%= render 'shared/search_form' %>
+<div class="hotels-index">
+  <h2><%= @hotels.count %> 件が見つかりました。</h2>
+  <div class="card-deck">
+    <% @hotels.each do |hotel| %>
+      <div class="card">
+        <% if hotel.image.present? %>
+          <%= image_tag hotel.image.url, class: "card-img-top" %>
+        <% else %>
+          <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png', class: "card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= hotel.name %></h5>
+          <p class="card-address"><%= hotel.address %></p>
+          <p class="card-description"><%= hotel.description %></p>
+          <div class="card-price-and-button">
+            <p class="card-price"><%= number_to_currency(hotel.price, unit: "¥", precision: 0) %>~</p>
+            <%= link_to '詳細はこちら', hotel_path(hotel), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

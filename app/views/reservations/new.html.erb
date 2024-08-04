@@ -1,0 +1,19 @@
+<div class="reservation-confirmation">
+  <h1>予約内容の確認</h1>
+  <p>チェックイン: <%= params[:check_in] %></p>
+  <p>チェックアウト: <%= params[:check_out] %></p>
+  <p>日数: <%= (Date.parse(params[:check_out]) - Date.parse(params[:check_in])).to_i %>日</p>
+  <p>人数: <%= params[:number_of_people] %>人</p>
+  <p>お支払い金額: ¥<%= number_to_currency(@hotel.price * (Date.parse(params[:check_out]) - Date.parse(params[:check_in])).to_i, unit: "¥", precision: 0) %></p>
+
+  <%= form_with(model: @reservation, url: hotel_reservations_path(@hotel), method: :post, local: true) do |form| %>
+    <%= form.hidden_field :check_in, value: params[:check_in] %>
+    <%= form.hidden_field :check_out, value: params[:check_out] %>
+    <%= form.hidden_field :number_of_people, value: params[:number_of_people] %>
+    <div class="form-actions">
+      <%= form.submit '予約を確定', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= link_to 'キャンセル', hotel_path(@hotel), class: 'btn btn-secondary' %>
+</div>

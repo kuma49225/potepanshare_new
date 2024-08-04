@@ -1,0 +1,27 @@
+<%= custom_form_with(model: [@hotel, @reservation], local: true, method: :patch, html: { class: "edit-form" }) do |form| %>
+  <% if @reservation.errors.any? %>
+    <div class="alert alert-danger">
+      <p>予約情報の更新に失敗しました。</p>
+    </div>
+  <% end %>
+
+  <div class="custom-form-group">
+    <%= form.label :check_in, "チェックイン" %>
+    <%= form.date_field :check_in %>
+  </div>
+
+  <div class="custom-form-group">
+    <%= form.label :check_out, "チェックアウト" %>
+    <%= form.date_field :check_out %>
+  </div>
+
+  <div class="custom-form-group">
+    <%= form.label :number_of_people, "人数" %>
+    <%= form.number_field :number_of_people %>
+  </div>
+
+  <div class="custom-form-actions">
+    <%= form.submit "再予約する", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", hotel_reservation_path(@hotel, @reservation), class: "btn btn-secondary" %>
+  </div>
+<% end %>

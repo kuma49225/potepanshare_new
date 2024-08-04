@@ -1,0 +1,9 @@
+<main class="account-settings-main">
+  <%= render 'account_settings/settings_navigation' %>
+  <div class="account-show">
+    <h3>アカウント</h3>
+    <%= link_to '編集', edit_account_account_settings_path, class: 'edit-link' %>
+    <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+    <p><strong>パスワード:</strong> *********</p>
+  </div>
+</main>

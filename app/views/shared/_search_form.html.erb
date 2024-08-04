@@ -1,0 +1,11 @@
+<div class="search-form">
+  <%= form_with(url: hotels_path, method: :get, local: true) do %>
+    <div class="form-group">
+      <%= text_field_tag :area, params[:area], class: 'form-control', placeholder: 'エリア名を入力' %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag :keyword, params[:keyword], class: 'form-control', placeholder: 'キーワード名を入力' %>
+    </div>
+    <%= submit_tag '検索', class: 'btn btn-primary' %>
+  <% end %>
+</div>

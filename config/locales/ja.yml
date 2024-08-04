@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      reservation: "予約"
+      user: "ユーザー"
+      hotel: "ホテル"
+    attributes:
+      reservation:
+        check_in: "チェックイン"
+        check_out: "チェックアウト"
+        number_of_people: "人数"
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        name: "ユーザー名"
+      hotel:
+        name: "施設名"
+        description: "施設詳細"
+        price: "料金"
+        address: "住所"
+        image: "施設画像"
+    errors:
+      messages:
+        greater_than_or_equal_to: "人数は%{count}以上でなければなりません"
+        check_in_cannot_be_in_the_past: "チェックインは今日以降の日付を設定してください。"
+        check_out_must_be_after_check_in: "チェックアウトはチェックイン日の翌日以降に設定してください。"
+        blank: "%{attribute}は必須です。"
+        not_a_number: "%{attribute}は数値で入力してください。"
+        confirmation: "と%{attribute}の入力が一致しません"
+  errors:
+    format: "%{message}"
+    messages:
+      not_saved: "保存に失敗しました。 %{count}件のエラーがあります。"
+
+

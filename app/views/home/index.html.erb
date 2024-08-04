@@ -1,0 +1,47 @@
+<div class="FirstView">
+  <section class="container">
+    <h2 class="FirstView__title">
+      Potepan Shareで<br>
+      まだ体験したことのない<br>
+      旅をしよう
+    </h2>
+
+    <div class="FirstViewSearch">
+      <%= form_with url: search_hotels_path, method: :get, local: true do %>
+        <%= text_field_tag :area, params[:area], class: 'form-control FirstViewSearch__input', placeholder: 'エリア名を入力' %>
+        <%= submit_tag '検索', class: 'btn FirstViewSearch__button' %>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+<div class="container">
+  <section class="RecommendAreaSection">
+    <h2 class="RecommendAreaSection__title">
+      おすすめのエリア
+    </h2>
+
+    <div class="RecommendAreas">
+      <a class="RecommendArea" href="<%= search_hotels_path(area: '東京') %>">
+        <img src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/tokyo.jpg" alt="東京">
+        <span class="RecommendArea__name RecommendArea__name--ja">東京</span>
+        <span class="RecommendArea__name RecommendArea__name--en">Tokyo</span>
+      </a>
+      <a class="RecommendArea" href="<%= search_hotels_path(area: '大阪') %>">
+        <img src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/osaka.jpg" alt="大阪">
+        <span class="RecommendArea__name RecommendArea__name--ja">大阪</span>
+        <span class="RecommendArea__name RecommendArea__name--en">Osaka</span>
+      </a>
+      <a class="RecommendArea" href="<%= search_hotels_path(area: '京都') %>">
+        <img src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/kyoto.jpg" alt="京都">
+        <span class="RecommendArea__name RecommendArea__name--ja">京都</span>
+        <span class="RecommendArea__name RecommendArea__name--en">Kyoto</span>
+      </a>
+      <a class="RecommendArea" href="<%= search_hotels_path(area: '札幌') %>">
+        <img src="https://rails-02-sample.herokuapp.com/assets/home/recommend-area/sapporo.jpg" alt="札幌">
+        <span class="RecommendArea__name RecommendArea__name--ja">札幌</span>
+        <span class="RecommendArea__name RecommendArea__name--en">Sapporo</span>
+      </a>
+    </div>
+  </section>
+</div>
