@@ -1,6 +1,6 @@
 <%= render 'shared/search_form' %>
 <div class="hotels-index">
-  <h2><%= pluralize(@hotels.count, '件') %>が見つかりました。</h2>
+  <h2><%= @hotels.count %> 件が見つかりました。</h2>
   <div class="card-deck">
     <% @hotels.each do |hotel| %>
       <div class="card">
@@ -11,11 +11,16 @@
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= hotel.name %></h5>
-          <p class="card-text"><%= hotel.description %></p>
-          <p class="card-text"><strong>¥<%= number_to_currency(hotel.price, unit: "¥", precision: 0) %>~</strong></p>
-          <%= link_to '詳細はこちら', hotel_path(hotel), class: 'btn btn-primary' %>
+          <p class="card-address"><%= hotel.address %></p>
+          <p class="card-description"><%= hotel.description %></p>
+          <div class="card-price-and-button">
+            <p class="card-price"><%= number_to_currency(hotel.price, unit: "¥", precision: 0) %>~</p>
+            <%= link_to '詳細はこちら', hotel_path(hotel), class: 'btn btn-primary' %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+

@@ -3,7 +3,15 @@ class HotelsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index
-    @hotels = Hotel.all
+    @hotels = if params[:area].present? && params[:keyword].present?
+                Hotel.search_by_area(params[:area]).search_by_keyword(params[:keyword])
+              elsif params[:area].present?
+                Hotel.search_by_area(params[:area])
+              elsif params[:keyword].present?
+                Hotel.search_by_keyword(params[:keyword])
+              else
+                Hotel.all
+              end
   end
 
   def my_hotels
@@ -43,7 +51,11 @@ class HotelsController < ApplicationController
   end
 
   def search
-    @hotels = Hotel.where("address LIKE ?", "%#{params[:area]}%")
+    @hotels = if params[:area].present?
+                Hotel.search_by_area(params[:area])
+              else
+                Hotel.all
+              end
     render :index
   end
 

@@ -19,10 +19,10 @@
         <td><%= image_tag reservation.hotel.image.present? ? reservation.hotel.image.url : 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png', size: '100x100' %></td>
         <td><%= link_to reservation.hotel.name, hotel_path(reservation.hotel) %></td>
         <td><%= reservation.hotel.description %></td>
-        <td>¥<%= number_to_currency(reservation.hotel.price * (reservation.check_out - reservation.check_in).to_i, unit: "¥", precision: 0) %></td>
-        <td><%= reservation.check_in %></td>
-        <td><%= reservation.check_out %></td>
-        <td><%= reservation.created_at %></td>
+        <td>¥<%= number_to_currency(reservation.hotel.price * (reservation.check_out - reservation.check_in).to_i, unit: "", precision: 0) %></td>
+        <td><%= reservation.check_in.strftime('%Y/%m/%d') %></td>
+        <td><%= reservation.check_out.strftime('%Y/%m/%d') %></td>
+        <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
         <td>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

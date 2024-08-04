@@ -132,4 +132,65 @@ document.addEventListener("turbolinks:load", function () {
       }
     });
   });
+
+  // 予約フォームのバリデーションを追加
+  const checkInField = document.querySelector("input[name='check_in']");
+  const checkOutField = document.querySelector("input[name='check_out']");
+  const numberOfPeopleField = document.querySelector("input[name='number_of_people']");
+  const reservationForm = document.querySelector("#reservation-form");
+
+  if (checkInField && checkOutField && numberOfPeopleField && reservationForm) {
+    // 日本の現在の日付を取得
+    const now = new Date();
+    const JST = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Tokyo"}));
+    const today = JST.toISOString().split('T')[0];
+
+    console.log("Today (JST):", today); // Debugging line to confirm the date
+
+    // 日付フィールドの最小値を今日の日付に設定
+    checkInField.setAttribute('min', today);
+    checkOutField.setAttribute('min', today);
+
+    // エラーメッセージ用のコンテナを追加
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'alert alert-danger';
+    errorContainer.style.display = 'none';
+    reservationForm.prepend(errorContainer);
+
+    // フォーム送信時のバリデーション
+    reservationForm.addEventListener("submit", function(event) {
+      const checkInDate = new Date(checkInField.value);
+      const checkOutDate = new Date(checkOutField.value);
+      const numberOfPeople = parseInt(numberOfPeopleField.value, 10);
+      let errors = [];
+
+      // 入力項目が不足しているかチェック
+      if (!checkInField.value || !checkOutField.value || !numberOfPeopleField.value) {
+        errors.push("すべての入力項目を入力してください。");
+      }
+
+      // 人数バリデーション
+      if (numberOfPeople < 1) {
+        errors.push("人数は1以上に設定してください。");
+      }
+
+      // チェックイン・チェックアウト日付バリデーション
+      if (checkInDate >= checkOutDate) {
+        errors.push("チェックアウト日はチェックイン日の翌日以降に設定してください。");
+      }
+
+      // 日付が過去でないか確認
+      if (checkInDate < new Date(today) || checkOutDate < new Date(today)) {
+        errors.push("チェックイン・チェックアウト日は過去の日付を設定できません。");
+      }
+
+      if (errors.length > 0) {
+        event.preventDefault();
+        errorContainer.innerHTML = errors.join('<br>');
+        errorContainer.style.display = 'block';
+      } else {
+        errorContainer.style.display = 'none';
+      }
+    });
+  }
 });

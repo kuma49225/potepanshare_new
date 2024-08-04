@@ -5,26 +5,30 @@
   </div>
   <div class="hotel-show__details">
     <h2><%= @hotel.name %></h2>
-    <p><%= @hotel.description %></p>
     <p><%= @hotel.address %></p>
-
     <div class="hotel-show__price">
-      <p>¥<%= number_to_currency(@hotel.price, unit: "¥", precision: 0) %>~</p>
+      <p><%= "¥#{number_to_currency(@hotel.price, unit:"",precision: 0)}~" %></p>
     </div>
-    <%= form_with(url: new_hotel_reservation_path(@hotel), method: :get, local: true) do %>
-      <div class="form-group">
-        <label for="check_in">チェックイン</label>
-        <%= date_field_tag :check_in, nil, class: 'form-control' %>
+    <p><%= @hotel.description %></p>
+    <%= form_with(url: new_hotel_reservation_path(@hotel), method: :get, local: true, id: "reservation-form") do %>
+      <div class="hotel-show__form-group-row">
+        <div class="hotel-show__form-group">
+          <label for="check_in">チェックイン</label>
+          <%= date_field_tag :check_in, nil, class: 'form-control' %>
+          <small class="text-danger"></small>
+        </div>
+        <div class="hotel-show__form-group">
+          <label for="check_out">チェックアウト</label>
+          <%= date_field_tag :check_out, nil, class: 'form-control' %>
+          <small class="text-danger"></small>
+        </div>
+        <div class="hotel-show__form-group">
+          <label for="number_of_people">人数</label>
+          <%= number_field_tag :number_of_people, nil, class: 'form-control' %>
+          <small class="text-danger"></small>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="check_out">チェックアウト</label>
-        <%= date_field_tag :check_out, nil, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <label for="number_of_people">人数</label>
-        <%= number_field_tag :number_of_people, nil, class: 'form-control' %>
-      </div>
-      <div class="form-actions">
+      <div class="hotel-show__form-actions">
         <%= submit_tag '予約する', class: 'btn btn-primary' %>
       </div>
     <% end %>

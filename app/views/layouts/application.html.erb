@@ -30,7 +30,7 @@
                 <% if current_user.profile_image.present? %>
                   <img src="<%= current_user.profile_image.url %>" alt="Profile Image" class="profile-icon">
                 <% else %>
-                  <i class="fas fa-user"></i>
+                  <img src="https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png" alt="Default Avatar" class="profile-icon">
                 <% end %>
                 <%= current_user.name %>
               </a>

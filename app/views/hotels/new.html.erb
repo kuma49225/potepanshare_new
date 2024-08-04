@@ -1,36 +1,70 @@
 <main class="account-settings-main">
   <div class="account-settings">
-    <div class="settings-content">
+    <div class="settings-content new-hotel-form">
       <h2>新規登録</h2>
-      <%= form_with(model: @hotel, local: true, class: "form-horizontal") do |form| %>
+      <%= form_with(model: @hotel, local: true, builder: ActionView::Helpers::FormBuilder, class: "form-horizontal") do |form| %>
+
         <div class="form-group">
           <%= form.label :name, "施設名", class: "control-label" %>
-          <%= form.text_field :name, class: "form-control", placeholder: "ルーム名を入力" %>
+          <div class="form-control-wrapper">
+            <%= form.text_field :name, class: "form-control", placeholder: "ルーム名を入力" %>
+            <% if @hotel.errors[:name].present? %>
+              <div class="text-danger">
+                <%= @hotel.errors[:name].first %>
+              </div>
+            <% end %>
+          </div>
         </div>
+
         <div class="form-group">
           <%= form.label :description, "施設詳細", class: "control-label" %>
-          <%= form.text_area :description, class: "form-control", placeholder: "施設詳細を入力" %>
+          <div class="form-control-wrapper">
+            <%= form.text_area :description, class: "form-control", placeholder: "施設詳細を入力" %>
+            <% if @hotel.errors[:description].present? %>
+              <div class="text-danger">
+                <%= @hotel.errors[:description].first %>
+              </div>
+            <% end %>
+          </div>
         </div>
+
         <div class="form-group">
           <%= form.label :price, "料金", class: "control-label" %>
-          <%= form.text_field :price, class: "form-control", placeholder: "一日あたりの料金を入力" %>
+          <div class="form-control-wrapper">
+            <%= form.number_field :price, class: "form-control", placeholder: "一日あたりの料金を入力" %>
+            <% if @hotel.errors[:price].present? %>
+              <div class="text-danger">
+                <%= @hotel.errors[:price].first %>
+              </div>
+            <% end %>
+          </div>
         </div>
+
         <div class="form-group">
           <%= form.label :address, "住所", class: "control-label" %>
-          <%= form.text_field :address, class: "form-control", placeholder: "住所を入力" %>
+          <div class="form-control-wrapper">
+            <%= form.text_field :address, class: "form-control", placeholder: "住所を入力" %>
+            <% if @hotel.errors[:address].present? %>
+              <div class="text-danger">
+                <%= @hotel.errors[:address].first %>
+              </div>
+            <% end %>
+          </div>
         </div>
+
         <div class="form-group">
           <%= form.label :image, "施設画像", class: "control-label" %>
-          <%= form.file_field :image, class: "form-control" %>
+          <div class="form-control-wrapper">
+            <%= form.file_field :image, class: "form-control" %>
+          </div>
         </div>
+
         <div class="form-actions">
           <%= form.submit "保存", class: "btn btn-primary" %>
           <%= link_to "キャンセル", hotels_path, class: "btn btn-secondary" %>
         </div>
+
       <% end %>
     </div>
   </div>
 </main>
-
-
-  
